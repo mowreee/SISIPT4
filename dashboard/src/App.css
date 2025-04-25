@@ -1,0 +1,18 @@
+/* App.css */
+
+/* Layout styles */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  width: 1080px;
+}
+.app-header {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+
+.app-content {
+  padding: 24px;
+  overflow-y: auto;
+}

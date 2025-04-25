@@ -1,0 +1,23 @@
+/* Sidebar.css */
+
+.sidebar {
+    background-color: #292828 !important;
+  }
+  
+  .sidebar .ant-menu {
+    background-color: #292828 !important;
+  }
+  
+  .sidebar .ant-menu-item {
+    color: white !important;
+  }
+  
+  .sidebar .ant-menu-item:hover {
+    background-color: #434343 !important;
+  }
+  
+  .sidebar .ant-menu-item a {
+    color: white !important;
+    text-decoration: none;
+  }
+  
