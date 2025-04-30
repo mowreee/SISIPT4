@@ -1,10 +1,10 @@
 import React from 'react';
-import { Layout, Space } from 'antd';  // Ant Design components
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // React Router for routing
-import Dashboard from './pages/Dashboard';  // Import the Dashboard component
-import AddStudent from './pages/AddStudent';  // Import the AddStudent component
-import Sidebar from './pages/Sidebar';  // Import the Sidebar component
-import './App.css';  // Import the CSS file for styling
+import { Layout, Space } from 'antd';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
+import Dashboard from './pages/Dashboard'; 
+import AddStudent from './pages/AddStudent'; 
+import Sidebar from './pages/Sidebar'; 
+import './App.css';
 
 const { Header, Content } = Layout;
 
@@ -12,19 +12,17 @@ const App = () => {
   return (
     <Router>
       <Layout className="app-layout">
-        <Sidebar />  {/* Sidebar component */}
-        <Layout style={{ marginLeft: 200 }}>
+        <Sidebar />
           <Content className="app-content">
             <Space direction="vertical" style={{ width: '100%' }}>
-              {/* Routes to render Dashboard or AddStudent based on selected menu item */}
-              <Routes>
+              <Routes>                
+                <Route path="/" element={<Dashboard />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/add-student" element={<AddStudent />} />
               </Routes>
             </Space>
           </Content>
         </Layout>
-      </Layout>
     </Router>
   );
 };

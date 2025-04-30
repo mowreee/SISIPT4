@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, Card, Row, Col, notification } from 'antd';
-import './Dashboard.css';  // Import the CSS file
+import './Dashboard.css'; 
 
 const Dashboard = () => {
   const [color, setColor] = useState("red");
@@ -20,8 +20,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-
-      {/* Your provided code */}
       <div>
         <h1>Welcome to Saint Mary's University</h1>
         <div className="header">

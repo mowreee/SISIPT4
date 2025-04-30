@@ -1,10 +1,11 @@
-/* App.css */
+:root {
+  margin: 0;
+}
 
-/* Layout styles */
 .app-layout {
-  min-height: 100vh;
+  height: auto;
   display: flex;
-  width: 1080px;
+  width: auto;
 }
 .app-header {
   color: white;

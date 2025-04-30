@@ -1,15 +1,11 @@
-/* Dashboard.css */
-
 .dashboard-container {
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-  }
-  
+  flex: 1;
+  background-color: #f4f4f4;
+  overflow: auto;
+  text-align: center;
+}
+
   .dashboard-title {
-    text-align: center;
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
@@ -25,15 +21,10 @@
   .dashboard-card p {
     font-size: 32px;
     font-weight: bold;
-    color: #1890ff; /* Ant Design primary color */
+    color: #1890ff;
   }
-  
-  .header {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+
   .btn {
-    margin-top: 10px;
+    margin-top: 10px; 
   }
   

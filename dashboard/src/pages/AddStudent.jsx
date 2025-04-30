@@ -64,6 +64,7 @@ const AddStudent = () => {
 
   return (
     <div className="add-student-container">
+      <h1>Student Details</h1>
       <Button type="primary" onClick={showModal}>
         Add Student
       </Button>
@@ -72,7 +73,7 @@ const AddStudent = () => {
         title="Add Student"
         visible={visible}
         onCancel={handleCancel}
-        footer={null} // Disable the default footer
+        footer={null}
         className="add-student-modal"
       >
         <Form form={form} onFinish={onFinish} layout="vertical">
