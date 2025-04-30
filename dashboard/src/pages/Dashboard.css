@@ -3,28 +3,32 @@
   background-color: #f4f4f4;
   overflow: auto;
   text-align: center;
+  padding: 10px;
 }
 
-  .dashboard-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-card {
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #fff;
-  }
-  
-  .dashboard-card p {
-    font-size: 32px;
-    font-weight: bold;
-    color: #1890ff;
-  }
+.dashboard-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 12px;
+}
 
-  .btn {
-    margin-top: 10px; 
-  }
-  
+.dashboard-card {
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  background-color: #fff;
+  padding: 12px;
+  margin: 10px auto;
+  max-width: 300px;
+}
+
+.dashboard-card p {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1890ff;
+  margin: 0;
+}
+
+.btn {
+  margin-top: 6px;
+}

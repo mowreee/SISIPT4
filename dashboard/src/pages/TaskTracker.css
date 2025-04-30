@@ -1,0 +1,23 @@
+.task-tracker-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.task-input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.task-list {
+    text-align: left;
+}
+
+.completed-task {
+    text-decoration: line-through;
+    opacity: 0.6;
+}

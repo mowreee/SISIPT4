@@ -1,7 +1,11 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import { AppstoreAddOutlined, DashboardOutlined } from '@ant-design/icons';
+import {
+  AppstoreAddOutlined,
+  DashboardOutlined,
+  CheckCircleOutlined,
+} from '@ant-design/icons';
 import './Sidebar.css';
 
 const { Sider } = Layout;
@@ -19,6 +23,9 @@ const Sidebar = () => {
         </Menu.Item>
         <Menu.Item key="2" icon={<AppstoreAddOutlined />}>
           <Link to="/add-student">Add Student</Link>
+        </Menu.Item>
+        <Menu.Item key="3" icon={<CheckCircleOutlined />}>
+          <Link to="/task-tracker">Task Tracker</Link>
         </Menu.Item>
       </Menu>
     </Sider>
