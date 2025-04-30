@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import AddStudent from './pages/AddStudent';
 import TaskTracker from './pages/TaskTracker';
 import Sidebar from './pages/Sidebar';
+import UserManagement from './pages/UserManagement';
 import './App.css';
 
 const { Header, Content } = Layout;
@@ -21,6 +22,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/add-student" element={<AddStudent />} />
               <Route path="/task-tracker" element={<TaskTracker />} />
+              <Route path="/user-management" element={<UserManagement />} />
             </Routes>
           </Space>
         </Content>
