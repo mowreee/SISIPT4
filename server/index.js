@@ -1,93 +1,50 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const axios = require('axios');  // Ensure axios is installed and imported
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-const mongoURI = 'mongodb://localhost:27017/studentis';
+const port = process.env.PORT || 5000;
 
-// Updated MongoDB connection (no need for deprecated options)
-mongoose.connect(mongoURI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
+app.use(cors());
+app.use(bodyParser.json());
+
+mongoose.connect("mongodb://localhost:27017/school")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log("Error connecting to MongoDB:", err));
 
 const studentSchema = new mongoose.Schema({
   idNumber: { type: String, required: true, unique: true },
-  name: { type: String, required: true },
-  age: { type: Number, required: true },
-  course: { type: String, required: true }
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  middleName: { type: String, required: false },
+  course: { type: String, required: true },
+  year: { type: String, required: true }
 });
 
-const Student = mongoose.model('Student', studentSchema);
+const Student = mongoose.model("Student", studentSchema);
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true
-}));
-app.use(express.json());
-
-app.get("/fetchstudents", async (req, res) => {
+app.post("/addstudentmongo", async (req, res) => {
   try {
-    const students = await Student.find();
-    console.log('Fetched students:', students);
-    res.json(students);
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-});
+    const { idNumber, firstName, lastName, middleName, course, year } = req.body;
 
-app.post("/addstudent", async (req, res) => {
-  try {
-    const newStudent = new Student(req.body);
+    const newStudent = new Student({
+      idNumber,
+      firstName,
+      lastName,
+      middleName,
+      course,
+      year
+    });
+
     await newStudent.save();
-    res.status(201).json({ success: true, data: newStudent });
+    return res.status(201).json({ message: "Student added successfully" });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    console.error("Error adding student:", error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 });
 
-app.put("/editstudent/:id", async (req, res) => {
-  try {
-    const updatedStudent = await Student.findOneAndUpdate(
-      { idNumber: req.params.id },
-      req.body,
-      { new: true, runValidators: true }
-    );
-    if (!updatedStudent) {
-      return res.status(404).json({ success: false, message: "Student not found" });
-    }
-    res.json({ success: true, data: updatedStudent });
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
-});
-
-app.delete("/deletestudent/:id", async (req, res) => {
-  try {
-    const deletedStudent = await Student.findOneAndDelete({ idNumber: req.params.id });
-    if (!deletedStudent) {
-      return res.status(404).json({ success: false, message: "Student not found" });
-    }
-    res.json({ success: true, data: deletedStudent });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-});
-
-// Assuming you're using the fetchStudents function on the frontend as well:
-const fetchStudents = async () => {
-  try {
-    const response = await axios.get("http://localhost:1337/fetchstudents");
-    setStudents(response.data);
-  } catch (error) {
-    console.error('Error fetching students:', error.response?.data || error.message);
-    alert('Failed to fetch students. Check the console for details.');
-  }
-};
-
-const port = 1337;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
