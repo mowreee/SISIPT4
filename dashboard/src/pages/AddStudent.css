@@ -16,8 +16,9 @@
 
 .add-student-table {
   margin-top: 20px;
-  width: 90%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1400px;
+  min-width: 1200px;
   border: 1px solid #e8e8e8;
   border-radius: 8px;
 }
