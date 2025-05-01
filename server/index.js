@@ -13,6 +13,16 @@ const Student = require("./models/student.models");
 
 // Create Express application
 const app = express();
+const port = 5000; // The port our server will run on
+
+// Middleware setup
+app.use(cors()); // Allow requests from different origins (like our React frontend)
+app.use(bodyParser.json()); // Parse JSON request bodies
+
+// Connect to MongoDB database
+mongoose.connect("mongodb://localhost:27017/SIS") // SIS = Student Information System
+  .then(() => console.log("✅ Connected to MongoDB successfully"))
+  .catch((err) => console.log("❌ Error connecting to MongoDB:", err));
 
 // Register API routes
 app.use("/api/students", studentRoutes); // All student-related endpoints will start with /api/students
