@@ -20,7 +20,7 @@ app.use(cors()); // Allow requests from different origins (like our React fronte
 app.use(bodyParser.json()); // Parse JSON request bodies
 
 // Connect to MongoDB database
-mongoose.connect("mongodb://localhost:27017/SIS") // SIS = Student Information System
+mongoose.connect("mongodb://127.0.0.1:27017/SIS") // SIS = Student Information System
   .then(() => console.log("✅ Connected to MongoDB successfully"))
   .catch((err) => console.log("❌ Error connecting to MongoDB:", err));
 
@@ -47,7 +47,7 @@ app.post("/addstudentmongo", async (req, res) => {
 
     // Save to database
     await newStudent.save();
-    
+
     // Send successful response
     return res.status(201).json({ message: "Student added successfully" });
   } catch (error) {
