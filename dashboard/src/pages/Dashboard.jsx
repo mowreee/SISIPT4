@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, Card, Row, Col, notification } from 'antd';
-import './Dashboard.css'; 
+import './Dashboard.css';
 
 const Dashboard = () => {
   const [color, setColor] = useState("red");
@@ -48,7 +48,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-     
+
     </div>
   );
 };

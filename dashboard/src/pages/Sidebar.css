@@ -3,9 +3,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   color: white;
+  padding: 20px 0;
 }
 
 .sidebar .ant-menu {
@@ -36,4 +37,17 @@
 .sidebar .ant-menu-item-selected {
   color: #292828 !important;
   background-color: #1890ff !important;
+}
+
+.add-user-btn {
+  width: 80%;
+  text-align: center;
+}
+
+.menu-header {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px;
+  text-align: center;
 }

@@ -9,6 +9,7 @@ const { Sider } = Layout;
 const Sidebar = () => {
   return (
     <Sider width={200} className="sidebar">
+      <div className="menu-header">Main Menu</div>
       <Menu
         mode="inline"
         defaultSelectedKeys={['1']}
@@ -26,7 +27,6 @@ const Sidebar = () => {
         <Menu.Item key="4" icon={<UserAddOutlined />}>
           <Link to="/user-management">Add User</Link>
         </Menu.Item>
-
       </Menu>
     </Sider>
   );
