@@ -1,33 +1,31 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+// Import necessary packages
+const express = require("express");   // Web server framework
+const mongoose = require("mongoose"); // MongoDB database connection
+const bodyParser = require("body-parser"); // Parse incoming request bodies
+const cors = require("cors");         // Enable Cross-Origin Resource Sharing
 
+// Import route files - these contain the API endpoints
+const studentRoutes = require("./routes/student.routes");
+const userRoutes = require("./routes/user.routes");
+
+// Import models - these define the data structure
+const Student = require("./models/student.models");
+
+// Create Express application
 const app = express();
-const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(bodyParser.json());
+// Register API routes
+app.use("/api/students", studentRoutes); // All student-related endpoints will start with /api/students
+app.use("/api/users", userRoutes);       // All user-related endpoints will start with /api/users
 
-mongoose.connect("mongodb://localhost:27017/SIS")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log("Error connecting to MongoDB:", err));
-
-const studentSchema = new mongoose.Schema({
-  idNumber: { type: String, required: true, unique: true },
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  middleName: { type: String, required: false },
-  course: { type: String, required: true },
-  year: { type: String, required: true }
-});
-
-const Student = mongoose.model("Student", studentSchema);
-
+// Legacy endpoint - kept for backward compatibility
+// This is an older way to add students; new code should use the /api/students endpoint instead
 app.post("/addstudentmongo", async (req, res) => {
   try {
+    // Extract student information from request body
     const { idNumber, firstName, lastName, middleName, course, year } = req.body;
 
+    // Create new student object
     const newStudent = new Student({
       idNumber,
       firstName,
@@ -37,14 +35,21 @@ app.post("/addstudentmongo", async (req, res) => {
       year
     });
 
+    // Save to database
     await newStudent.save();
+    
+    // Send successful response
     return res.status(201).json({ message: "Student added successfully" });
   } catch (error) {
+    // Handle errors
     console.error("Error adding student:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 });
 
+// Start the server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`🚀 Server is running on port ${port}`);
+  console.log(`📝 Students API: http://localhost:${port}/api/students`);
+  console.log(`👤 Users API: http://localhost:${port}/api/users`);
 });
