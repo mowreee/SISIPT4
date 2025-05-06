@@ -3,33 +3,23 @@ import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { AppstoreAddOutlined, DashboardOutlined, CheckCircleOutlined, UserAddOutlined } from '@ant-design/icons';
 import './Sidebar.css';
+import logo from '../assets/smulogo.png';
 
 const { Sider } = Layout;
 
-const Sidebar = () => {
-  return (
-    <Sider width={200} className="sidebar">
+const Sidebar = () => (
+  <Sider width={200} className="sidebar">
+    <div className="logo-container">
+      <img src={logo} alt="Logo" className="sidebar-logo" />
       <div className="menu-header">Main Menu</div>
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={['1']}
-        style={{ height: '100%', borderRight: 0 }}
-      >
-        <Menu.Item key="1" icon={<DashboardOutlined />}>
-          <Link to="/dashboard">Dashboard</Link>
-        </Menu.Item>
-        <Menu.Item key="2" icon={<AppstoreAddOutlined />}>
-          <Link to="/add-student">Add Student</Link>
-        </Menu.Item>
-        <Menu.Item key="3" icon={<CheckCircleOutlined />}>
-          <Link to="/task-tracker">Task Tracker</Link>
-        </Menu.Item>
-        <Menu.Item key="4" icon={<UserAddOutlined />}>
-          <Link to="/user-management">Add User</Link>
-        </Menu.Item>
-      </Menu>
-    </Sider>
-  );
-};
+    </div>
+    <Menu mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%', borderRight: 0 }}>
+      <Menu.Item key="1" icon={<DashboardOutlined />}><Link to="/dashboard">Dashboard</Link></Menu.Item>
+      <Menu.Item key="2" icon={<AppstoreAddOutlined />}><Link to="/add-student">Add Student</Link></Menu.Item>
+      <Menu.Item key="3" icon={<CheckCircleOutlined />}><Link to="/task-tracker">Task Tracker</Link></Menu.Item>
+      <Menu.Item key="4" icon={<UserAddOutlined />}><Link to="/user-management">Add User</Link></Menu.Item>
+    </Menu>
+  </Sider>
+);
 
 export default Sidebar;

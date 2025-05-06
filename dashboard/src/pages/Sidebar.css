@@ -51,3 +51,13 @@
   padding: 16px;
   text-align: center;
 }
+
+.logo-container {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.sidebar-logo {
+  width: 100px;
+  margin-bottom: 8px;
+}
