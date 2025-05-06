@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Button, Card, Typography } from 'antd';
 import { useNavigate, Link } from 'react-router-dom';
 import '../pages/login.css';
-import logo from '../assets/smulogo.png'; // adjust path if needed
+import logo from '../assets/smulogo.png';
 
 const { Text } = Typography;
 
