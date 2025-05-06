@@ -11,7 +11,7 @@ import './App.css';
 
 const { Content } = Layout;
 
-// Separate component for the breadcrumb
+//nngga
 const AppBreadcrumb = () => {
   const location = useLocation();
   const breadcrumbNameMap = {
