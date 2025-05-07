@@ -17,7 +17,7 @@ const Sidebar = () => (
       <Menu.Item key="1" icon={<DashboardOutlined />}><Link to="/dashboard">Dashboard</Link></Menu.Item>
       <Menu.Item key="2" icon={<AppstoreAddOutlined />}><Link to="/add-student">Add Student</Link></Menu.Item>
       <Menu.Item key="3" icon={<CheckCircleOutlined />}><Link to="/task-tracker">Task Tracker</Link></Menu.Item>
-      <Menu.Item key="4" icon={<UserAddOutlined />}><Link to="/user-management">Add User</Link></Menu.Item>
+      <Menu.Item key="4" icon={<UserAddOutlined />}><Link to="/user-management">Manage User</Link></Menu.Item>
     </Menu>
   </Sider>
 );
