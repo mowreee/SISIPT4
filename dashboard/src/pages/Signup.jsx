@@ -1,24 +1,42 @@
 import React from 'react';
-import { Form, Input, Button, Card, Typography } from 'antd';
+import { Form, Input, Button, Card, Typography, notification } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../pages/login.css';
 
 const { Text } = Typography;
+const API_URL = 'http://localhost:5000/api/users';
 
 const Signup = () => {
     const navigate = useNavigate();
 
-    const onFinish = () => {
-        navigate('/dashboard');
+    const onFinish = async (v) => {
+        try {
+            await axios.post(API_URL, {
+                userID: Date.now().toString(),
+                userFirstName: v.firstName,
+                userMiddleName: v.middleName,
+                userLastName: v.lastName,
+                userEmail: v.email,
+                userPassword: v.password
+            });
+            notification.success({ message: 'Signup successful' });
+            navigate('/');
+        } catch (err) {
+            notification.error({ message: 'Signup failed', description: err.response?.data?.message });
+        }
     };
+
 
     return (
         <div className="login-container">
             <Card className="login-card" title="Sign Up">
-                <Form onFinish={onFinish} layout="vertical">
-                    <Form.Item name="username" rules={[{ required: true }]}>
-                        <Input placeholder="Username" />
-                    </Form.Item>
+                <Form layout="vertical" onFinish={onFinish}>
+                    {['firstName', 'middleName', 'lastName'].map(name => (
+                        <Form.Item key={name} name={name} rules={[{ required: true }]}>
+                            <Input placeholder={name.replace('Name', ' Name')} />
+                        </Form.Item>
+                    ))}
                     <Form.Item name="email" rules={[{ required: true, type: 'email' }]}>
                         <Input placeholder="Email" />
                     </Form.Item>

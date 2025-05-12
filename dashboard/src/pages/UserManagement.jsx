@@ -71,17 +71,15 @@ const UserManagement = () => {
 
     const onFinish = async (values) => {
         setLoading(true);
-        
+
         try {
             if (editingUser) {
-                // Update existing user
                 await axios.put(`${API_URL}/${editingUser.userID}`, values);
                 notification.success({
                     message: 'User Updated',
                     description: `User ${values.userFirstName} ${values.userLastName} has been updated.`,
                 });
             } else {
-                // Add new user - add password for new users
                 if (!values.userPassword) {
                     notification.error({
                         message: 'Error',
@@ -96,8 +94,7 @@ const UserManagement = () => {
                     description: `User ${values.userFirstName} ${values.userLastName} has been added.`,
                 });
             }
-            
-            // Refresh user list
+
             fetchUsers();
             form.resetFields();
             setVisible(false);
@@ -138,7 +135,7 @@ const UserManagement = () => {
         setLoading(true);
         try {
             await axios.delete(`${API_URL}/${user.userID}`);
-            notification.info({ 
+            notification.info({
                 message: 'User Deleted',
                 description: `User ${user.userFirstName} ${user.userLastName} has been deleted.`
             });
@@ -210,7 +207,7 @@ const UserManagement = () => {
                                 <Input disabled={name === 'userID' && editingUser} />
                             </Form.Item>
                         ))}
-                        
+
                         {!editingUser && (
                             <Form.Item
                                 name="userPassword"
@@ -220,7 +217,7 @@ const UserManagement = () => {
                                 <Input.Password />
                             </Form.Item>
                         )}
-                        
+
                         <Button type="primary" htmlType="submit" className="add-student-btn" loading={loading}>
                             {editingUser ? 'Update User' : 'Add User'}
                         </Button>
