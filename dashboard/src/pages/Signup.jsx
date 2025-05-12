@@ -3,6 +3,7 @@ import { Form, Input, Button, Card, Typography, notification } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../pages/login.css';
+import logo from '../assets/smu emblem.png';
 
 const { Text } = Typography;
 const API_URL = 'http://localhost:5000/api/users';
@@ -30,6 +31,7 @@ const Signup = () => {
 
     return (
         <div className="login-container">
+            <img src={logo} alt="SMU Logo" className="login-image" />
             <Card className="login-card" title="Sign Up">
                 <Form layout="vertical" onFinish={onFinish}>
                     {['firstName', 'middleName', 'lastName'].map(name => (
