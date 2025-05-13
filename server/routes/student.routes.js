@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const Student = require("../models/student.models");
 
 router.post("/", async (req, res) => {
@@ -10,17 +9,9 @@ router.post("/", async (req, res) => {
     const existingStudent = await Student.findOne({ idNumber });
     if (existingStudent) {
       return res.status(400).json({ message: "Student with this ID number already exists" });
-    }
+    }    
 
-    const newStudent = new Student({
-      idNumber,
-      firstName,
-      lastName,
-      middleName,
-      course,
-      year
-    });
-
+    const newStudent = new Student({ idNumber, firstName, lastName, middleName, course, year });
     await newStudent.save();
 
     return res.status(201).json({
@@ -36,7 +27,6 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const students = await Student.find();
-
     return res.status(200).json(students);
   } catch (error) {
     console.error("Error fetching students:", error);
@@ -47,11 +37,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const student = await Student.findOne({ idNumber: req.params.id });
-
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
-
     return res.status(200).json(student);
   } catch (error) {
     console.error("Error fetching student:", error);
@@ -62,7 +50,6 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { firstName, lastName, middleName, course, year } = req.body;
-
     const updatedStudent = await Student.findOneAndUpdate(
       { idNumber: req.params.id },
       { firstName, lastName, middleName, course, year },
@@ -86,7 +73,6 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deletedStudent = await Student.findOneAndDelete({ idNumber: req.params.id });
-
     if (!deletedStudent) {
       return res.status(404).json({ message: "Student not found" });
     }
@@ -98,4 +84,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = router; 
+module.exports = router;
