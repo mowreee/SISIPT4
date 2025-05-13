@@ -184,9 +184,9 @@ const UserManagement = () => {
     return (
         <div className="add-student-container">
             <h1>User Management</h1>
-            <Button type="primary" onClick={() => showModal()} style={{ marginBottom: 16 }}>
+           {/*} <Button type="primary" onClick={() => showModal()} style={{ marginBottom: 16 }}>
                 Add User
-            </Button>
+            </Button>*/}
 
             <Modal
                 title={editingUser ? 'Edit User' : 'Add User'}
