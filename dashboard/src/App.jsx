@@ -28,7 +28,7 @@ const App = () => {
                   <Route path="/add-student" element={<AddStudent />} />
                   <Route path="/task-tracker" element={<TaskTracker />} />
                   <Route path="/user-management" element={<UserManagement />} />
-                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                  {/*<Route path="*" element={<Navigate to="/dashboard" />} />*/}
                 </Routes>
               </div>
             ) : (

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, notification, Modal, Table, Popconfirm, Spin } from 'antd';
+import {
+  Form, Input, InputNumber, Button, notification,
+  Modal, Table, Popconfirm, Spin
+} from 'antd';
 import axios from 'axios';
 import './AddStudent.css';
 
@@ -59,7 +62,6 @@ const AddStudent = () => {
 
   const onFinish = async (values) => {
     setLoading(true);
-    
     try {
       if (editingStudent) {
         await axios.put(`${API_URL}/${editingStudent.idNumber}`, values);
@@ -83,7 +85,7 @@ const AddStudent = () => {
       console.error('Error saving student:', error);
       notification.error({
         message: 'Error',
-        description: error.response?.data?.message || 'Failed to save student. Please try again.'
+        description: error.response?.data?.message || 'Failed to save student. Please try again.',
       });
     } finally {
       setLoading(false);
@@ -94,7 +96,7 @@ const AddStudent = () => {
     setLoading(true);
     try {
       await axios.delete(`${API_URL}/${student.idNumber}`);
-      notification.info({ 
+      notification.info({
         message: 'Student Deleted',
         description: `Student ${student.firstName} ${student.lastName} has been deleted.`
       });
@@ -160,7 +162,11 @@ const AddStudent = () => {
                 label={label}
                 rules={required ? [{ required: true, message: `Please enter ${label.toLowerCase()}!` }] : []}
               >
-                <Input disabled={name === 'idNumber' && editingStudent} />
+                {name === 'year' ? (
+                  <InputNumber style={{ width: '100%' }} min={1} max={5} />
+                ) : (
+                  <Input disabled={name === 'idNumber' && editingStudent} />
+                )}
               </Form.Item>
             ))}
             <Button type="primary" htmlType="submit" className="add-student-btn" loading={loading}>

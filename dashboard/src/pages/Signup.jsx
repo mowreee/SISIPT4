@@ -16,7 +16,7 @@ const Signup = () => {
             await axios.post(API_URL, {
                 userID: Date.now().toString(),
                 userFirstName: v.firstName,
-                userMiddleName: v.middleName,
+                userMiddleName: v.middleName || '',
                 userLastName: v.lastName,
                 userEmail: v.email,
                 userPassword: v.password
@@ -28,21 +28,36 @@ const Signup = () => {
         }
     };
 
-
     return (
         <div className="login-container">
             <img src={logo} alt="SMU Logo" className="login-image" />
             <Card className="login-card" title="Sign Up">
                 <Form layout="vertical" onFinish={onFinish}>
-                    {['firstName', 'middleName', 'lastName'].map(name => (
-                        <Form.Item key={name} name={name} rules={[{ required: true }]}>
-                            <Input placeholder={name.replace('Name', ' Name')} />
-                        </Form.Item>
-                    ))}
-                    <Form.Item name="email" rules={[{ required: true, type: 'email' }]}>
+                    <Form.Item
+                        name="firstName"
+                        rules={[{ required: true, message: 'First name is required' }]}
+                    >
+                        <Input placeholder="First Name" />
+                    </Form.Item>
+                    <Form.Item name="middleName">
+                        <Input placeholder="Middle Name" />
+                    </Form.Item>
+                    <Form.Item
+                        name="lastName"
+                        rules={[{ required: true, message: 'Last name is required' }]}
+                    >
+                        <Input placeholder="Last Name" />
+                    </Form.Item>
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, type: 'email', message: 'Enter a valid email' }]}
+                    >
                         <Input placeholder="Email" />
                     </Form.Item>
-                    <Form.Item name="password" rules={[{ required: true }]}>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: 'Password is required' }]}
+                    >
                         <Input.Password placeholder="Password" />
                     </Form.Item>
                     <Button type="primary" htmlType="submit" block>Sign Up</Button>
