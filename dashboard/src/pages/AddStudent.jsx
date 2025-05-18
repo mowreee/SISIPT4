@@ -62,22 +62,19 @@ const AddStudent = () => {
     
     try {
       if (editingStudent) {
-        // Update existing student
         await axios.put(`${API_URL}/${editingStudent.idNumber}`, values);
         notification.success({
           message: 'Student Updated',
           description: `Student ${values.firstName} ${values.lastName} has been updated.`,
         });
       } else {
-        // Add new student
         await axios.post(API_URL, values);
         notification.success({
           message: 'Student Added',
           description: `Student ${values.firstName} ${values.lastName} has been added.`,
         });
       }
-      
-      // Refresh student list
+
       fetchStudents();
       form.resetFields();
       setVisible(false);
